@@ -5,9 +5,9 @@ library(dplyr)
 library(tidytext)
 library(readr)
 
-blogs <- data_frame(text = read_lines("C:/Users/Kijote/Documents/Coursera/Capstone/en_US/en_US.blogs.txt")) 
-news <- data_frame(text = read_lines("C:/Users/Kijote/Documents/Coursera/Capstone/en_US/en_US.news.txt")) 
-twitter <- data_frame(text = read_lines("C:/Users/Kijote/Documents/Coursera/Capstone/en_US/en_US.twitter.txt")) 
+blogs <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.blogs.txt")) 
+news <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.news.txt")) 
+twitter <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.twitter.txt")) 
 
 blogs.len <- nchar(blogs$text)
 news.len <- nchar(news$text)

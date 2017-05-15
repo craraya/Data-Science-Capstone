@@ -1,0 +1,91 @@
+---
+title: "Data-Science-Capstone"
+author: "Carlos Araya"
+date: "14 de mayo de 2017"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, include = FALSE)
+library(dplyr)
+library(tidytext)
+library(readr)
+
+```
+
+## Data Science Capstone
+
+This report is about the capstone on data science specialization. And it corresponds to the first view.
+
+## The Data
+
+The data is in <https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip>
+
+Its content are three files:
+
+* en_US.blogs.txt
+
+* en_US.news.txt
+
+* en_US.twitter.txt
+
+## Load the Data:
+
+We used the command.
+
+```{r load_data, eval=FALSE, include=TRUE}
+blogs <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.blogs.txt")) 
+news <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.news.txt")) 
+twitter <- data_frame(text = read_lines("E:/CARAYA/II - GitRepos/en_US/en_US.twitter.txt")) 
+
+blogs.len <- nchar(blogs$text)
+news.len <- nchar(news$text)
+twitter.len <- nchar(twitter$text)
+```
+
+To load the data and get file's length.
+
+```{r max, echo=TRUE}
+
+M1 <- matrix(c('en_US.blogs.txt','en_US.news.txt','en_US.twitter.txt'
+               ,length(blogs.len),length(news.len),length(twitter.len)
+               ,min(blogs.len),min(news.len),min(twitter.len)
+               ,median(blogs.len),median(news.len),median(twitter.len)
+               ,mean(blogs.len),mean(news.len),mean(twitter.len)
+               ,max(blogs.len),max(news.len),max(twitter.len))
+               ,ncol=6,nrow=3)
+
+M1
+
+```
+
+| File             | N lines   | Min | Median | Mean   | Max    |
+|:-----------------|:---------:|:---:|:------:|:------:|:------:|
+| en_US.blogs.txt  | 899,288   | 1   | 156    | 229.98 | 40,833 |
+| en_US.news.txt   | 1,010,242 | 1   | 185    | 201.16 | 11,384 |
+| en_US.twitter.txt| 2,360,148 | 2   | 64     | 68.68  | 140    |
+
+Or plot the length of size of the lines.
+
+```{r hist, echo=FALSE}
+par(mfrow=c(1,3))
+hist(blogs.len[ blogs.len >= quantile(blogs.len,probs = c(0.05,0.95))[1] & 
+                blogs.len <= quantile(blogs.len,probs = c(0.05,0.95))[2] ]
+     ,breaks = 50
+     ,main = 'Hist. of Blogs size of lines'
+     ,xlab = 'Size of Lines')
+
+hist(news.len[ news.len >= quantile(news.len,probs = c(0.05,0.95))[1] & 
+               news.len <= quantile(news.len,probs = c(0.05,0.95))[2] ]
+     ,breaks = 50
+     ,main = 'Hist. of News size of lines'
+     ,xlab = 'Size of Lines')
+
+hist(twitter.len[ twitter.len >= quantile(twitter.len,probs = c(0.05,0.95))[1] & 
+                  twitter.len <= quantile(twitter.len,probs = c(0.05,0.95))[2] ]
+     ,breaks = 50
+     ,main = 'Hist. of Twitter size of lines'
+     ,xlab = 'Size of Lines')
+```
