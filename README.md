@@ -6,10 +6,14 @@ This report is about the capstone on data science specialization. And it corresp
 ## The Data
 
 The data is in <https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip>
-And the report in: 
+
+And the report in: <http://rpubs.com/craraya/Capstone_Week_2>
 
 Its content are three files:
+
 - en_US.blogs.txt
+
 - en_US.news.txt
+
 - en_US.twitter.txt
 
